@@ -7,7 +7,6 @@ function createPlayer(name){
     return{name}
 }
 
-MygamePad.gamePad[9] = 6;
 
 const playerOne = createPlayer('player one');
 const playerTwo = createPlayer('player two');
@@ -45,18 +44,42 @@ function selectWinner(){
 function selectSpot(player, index){
 
     if(MygamePad.gamePad[index] === undefined){
-     ( MygamePad.gamePad[index] = player.name);
+      MygamePad.gamePad[index] = player.name;
     }
     else{
-        return 'spot already selected';
+        alert('spot already selected choose another spot');
+        playGame();
     }
 }
 
-MygamePad.gamePad[0] = playerOne.name;
 
-let try1 = selectSpot(playerTwo, 0);
-selectSpot(playerOne, 3);
+let counter = 0;
+function SetCurrentPlayer(){
 
-console.log(MygamePad.gamePad[3])
+    if(counter % 2 === 0){
+        counter++;
+        currentPlayer = playerOne;
+    }
+    else{
+        counter++;
+        currentPlayer = playerTwo;
+    }
+}
+
+function playGame(){
+    let choice = prompt(`${currentPlayer.name} enter your index`);
+    selectSpot(currentPlayer, choice);
+}
+
+let currentPlayer;
+
+function Game(){
+    SetCurrentPlayer();
+    playGame();
+    SetCurrentPlayer();
+    playGame();
+   
+}
+Game();
 
 
