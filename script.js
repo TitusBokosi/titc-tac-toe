@@ -78,6 +78,33 @@ function Game(){
     playGame();
     SetCurrentPlayer();
     playGame();
+    SetCurrentPlayer();
+    playGame();
+    SetCurrentPlayer();
+    playGame();
+    SetCurrentPlayer();
+    playGame();
+    let winner = selectWinner();
+    if (winner === false){
+        SetCurrentPlayer();
+        playGame();
+        winner = selectWinner();
+        if (winner === true){
+            console.log(`${currentPlayer.name} wins`);
+        }
+        else{
+           while(!winner){
+            SetCurrentPlayer();
+            playGame();
+            winner = selectWinner();
+           } 
+           console.log(`${currentPlayer.name} wins`);
+        }
+    }
+    else{
+        console.log(`${currentPlayer.name} wins`);
+    }
+    
    
 }
 Game();
