@@ -111,12 +111,18 @@ function Game(){
 function move(){
     let sourceIndex = prompt(`${currentPlayer.name} where do you want to move from?`);
     let targetIndex = prompt(`${currentPlayer.name} where do you want to move to?`);
+    if(MygamePad.gamePad[targetIndex] === undefined){
     MygamePad.gamePad[targetIndex] = MygamePad.gamePad[sourceIndex];
     MygamePad.gamePad[sourceIndex] = undefined;
+}
+else{
+    console.log ('spot already selected');
+    move();
+}
 
 }
 
-Game();
+
 
 
 
