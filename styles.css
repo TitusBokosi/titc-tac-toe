@@ -37,3 +37,11 @@ h1{
     overflow: hidden;
     font-weight: bold;;
 }
+.game-board{
+    border: solid rgb(10, 164, 253) 2px;
+    height: 300px;
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
