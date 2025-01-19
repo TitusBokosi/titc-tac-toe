@@ -109,12 +109,14 @@ function Game(){
 }
 
 function move(){
-    let sourceIndex = prompt('where do you want to move from?');
-    let targetIndex = prompt('where do you want to move to?');
+    let sourceIndex = prompt(`${currentPlayer.name} where do you want to move from?`);
+    let targetIndex = prompt(`${currentPlayer.name} where do you want to move to?`);
     MygamePad.gamePad[targetIndex] = MygamePad.gamePad[sourceIndex];
     MygamePad.gamePad[sourceIndex] = undefined;
 
 }
-console.log(selectWinner());
+
+Game();
+
 
 
