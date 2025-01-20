@@ -1,128 +1,132 @@
-const MygamePad = ( function(){
-    const gamePad = new Array(9);
-    return {gamePad};
-})();
-
-function createPlayer(name){
-    return{name}
-}
-
-
-const playerOne = createPlayer('player one');
-const playerTwo = createPlayer('player two');
-
-function selectWinner(){
-  if(MygamePad.gamePad[0] === MygamePad.gamePad[1] && MygamePad.gamePad[1] === MygamePad.gamePad[2] && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[0] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[3] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[5]&& MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[5] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[6] === MygamePad.gamePad[7] && MygamePad.gamePad[7] === MygamePad.gamePad[8] && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[7] !== undefined && MygamePad.gamePad[8] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[0] === MygamePad.gamePad[3] && MygamePad.gamePad[3] === MygamePad.gamePad[6] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[6] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[0] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[8] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[8] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[2] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[6] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[2] !== undefined){
-    return true;
-  }
-  else if(MygamePad.gamePad[2] === MygamePad.gamePad[5] && MygamePad.gamePad[5] === MygamePad.gamePad[8] && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[5] !== undefined && MygamePad.gamePad[8] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[1] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[7] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[7] !== undefined){
-    return true;
-  }
-  else{
-    return false;
-  }
-}
-
-function selectSpot(player, index){
-
-    if(MygamePad.gamePad[index] === undefined){
-      MygamePad.gamePad[index] = player.name;
-    }
-    else{
-        alert('spot already selected choose another spot');
-        playGame();
-    }
-}
-
-
-let counter = 0;
-function SetCurrentPlayer(){
-
-    if(counter % 2 === 0){
-        counter++;
-        currentPlayer = playerOne;
-    }
-    else{
-        counter++;
-        currentPlayer = playerTwo;
-    }
-}
-
-function playGame(){
-    let choice = prompt(`${currentPlayer.name} enter your index`);
-    selectSpot(currentPlayer, choice);
-}
-
-let currentPlayer;
-
-function Game(){
-    SetCurrentPlayer();
-    playGame();
-    SetCurrentPlayer();
-    playGame();
-    SetCurrentPlayer();
-    playGame();
-    SetCurrentPlayer();
-    playGame();
-    SetCurrentPlayer();
-    playGame();
-    let winner = selectWinner();
-    if (winner === false){
-        SetCurrentPlayer();
-        playGame();
-        winner = selectWinner();
-        if (winner === true){
-            console.log(`${currentPlayer.name} wins`);
-        }
-        else{
-           while(winner === false){
-            SetCurrentPlayer();
-            move();
-            winner = selectWinner();
-           } 
-           console.log(`${currentPlayer.name} wins`);
-        }
-    }
-    else{
-        console.log(`${currentPlayer.name} wins`);
-    }
-    
-   
-}
-
-function move(){
-    let sourceIndex = prompt(`${currentPlayer.name} where do you want to move from?`);
-    let targetIndex = prompt(`${currentPlayer.name} where do you want to move to?`);
-    if(MygamePad.gamePad[targetIndex] === undefined){
-    MygamePad.gamePad[targetIndex] = MygamePad.gamePad[sourceIndex];
-    MygamePad.gamePad[sourceIndex] = undefined;
-}
-else{
-    console.log ('spot already selected');
-    move();
-}
-
-}
-
-
-
-
-
+// Gameboard Module (IIFE)
+const Gameboard = (() => {
+    let board = ["", "", "", "", "", "", "", "", ""];
+  
+    const getBoard = () => board;
+  
+    const placeMark = (index, mark) => {
+      if (board[index] === "") {
+        board[index] = mark;
+        return true; // Mark placed successfully
+      }
+      return false; // Spot already taken
+    };
+  
+    const resetBoard = () => {
+      board = ["", "", "", "", "", "", "", "", ""];
+    };
+  
+      const checkWin = (mark) => {
+          const winCombinations = [
+              [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+              [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+              [0, 4, 8], [2, 4, 6]             // Diagonals
+          ];
+  
+          return winCombinations.some(combination => {
+              return combination.every(index => board[index] === mark);
+          });
+      };
+  
+      const checkTie = () => {
+          return board.every(cell => cell !== "");
+      };
+  
+    return { getBoard, placeMark, resetBoard, checkWin, checkTie };
+  })();
+  
+  // Player Factory
+  const Player = (name, mark) => {
+    return { name, mark };
+  };
+  
+  // Game Controller Module (IIFE)
+  const Game = (() => {
+    let player1;
+    let player2;
+    let currentPlayer;
+    let gameOver;
+  
+    const startGame = (name1, name2) => {
+      player1 = Player(name1, "X");
+      player2 = Player(name2, "O");
+      currentPlayer = player1;
+      gameOver = false;
+      Gameboard.resetBoard();
+      DisplayController.renderBoard();
+      DisplayController.displayMessage(`${currentPlayer.name}'s turn`);
+    };
+  
+      const switchPlayer = () => {
+          currentPlayer = currentPlayer === player1 ? player2 : player1;
+      };
+  
+      const playRound = (index) => {
+          if (gameOver) return;
+  
+          if (Gameboard.placeMark(index, currentPlayer.mark)) {
+              DisplayController.renderBoard();
+  
+              if (Gameboard.checkWin(currentPlayer.mark)) {
+                  gameOver = true;
+                  DisplayController.displayMessage(`${currentPlayer.name} wins!`);
+                  return;
+              }
+  
+              if (Gameboard.checkTie()) {
+                  gameOver = true;
+                  DisplayController.displayMessage("It's a tie!");
+                  return;
+              }
+  
+              switchPlayer();
+              DisplayController.displayMessage(`${currentPlayer.name}'s turn`);
+  
+          }
+      };
+  
+    return { startGame, playRound };
+  })();
+  
+  // Display Controller Module (IIFE)
+  const DisplayController = (() => {
+    const boardElement = document.getElementById("board");
+    const messageElement = document.getElementById("message");
+  
+    const renderBoard = () => {
+      const board = Gameboard.getBoard();
+      boardElement.innerHTML = ""; // Clear the board
+  
+      board.forEach((mark, index) => {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.dataset.index = index; // Store index for click handling
+        cell.textContent = mark;
+        cell.addEventListener("click", handleCellClick);
+        boardElement.appendChild(cell);
+      });
+    };
+  
+      const displayMessage = (message) => {
+          messageElement.textContent = message;
+      }
+  
+      const handleCellClick = (event) => {
+          const index = event.target.dataset.index;
+          Game.playRound(index);
+      };
+  
+      const setupStartButton = () => {
+        const startButton = document.getElementById('start-game');
+        const player1Name = document.getElementById('player1-name');
+        const player2Name = document.getElementById('player2-name');
+  
+        startButton.addEventListener('click', () => {
+          Game.startGame(player1Name.value, player2Name.value);
+        })
+      }
+  
+    return { renderBoard, displayMessage, setupStartButton };
+  })();
+  
+  DisplayController.setupStartButton();
