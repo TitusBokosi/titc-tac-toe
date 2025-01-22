@@ -1,13 +1,13 @@
 const MygamePad = ( function() {
     const gamePad = new Array(9);
     
-    function pickSpot(currentPlayer, index){
+    function pickSpot(yoh, index){
 
         if(gamePad[index] === undefined){
-            return gamePad[index] = currentPlayer.name;
+             gamePad[index] = yoh.name;
         }
         else{
-            return alert('spot alredy taken');
+            return alert('spot already taken');
         }
     }
 
@@ -42,7 +42,7 @@ const MygamePad = ( function() {
       }
 
           
-    return {pickSpot, selectWinner};
+    return {pickSpot, selectWinner, gamePad};
 })();
 
 
@@ -55,10 +55,11 @@ function CreatePlayer(name){
 }
 
 let counter = 0;
+let currentPlayer;
 
 
 function setCurrentPlayer(){
-    let currentPlayer;
+    
 
     if( counter % 2 === 0){
         currentPlayer = playerOne;
@@ -69,6 +70,9 @@ function setCurrentPlayer(){
     counter++;
 }
 
+
+
+const playerOne = new CreatePlayer('josh');
 
 const  spot1 = document.getElementById('spot-1');
 
@@ -83,6 +87,20 @@ const  spot5 = document.getElementById('spot-5');
 const  spot6 = document.getElementById('spot-6');
 
 const  spot7 = document.getElementById('spot-7');
+
 const  spot8 = document.getElementById('spot-8');
+
 const  spot9 = document.getElementById('spot-9');
+
+const play = document.getElementById('play');
+
+function game(){
+    spot4.addEventListener('click', () =>{
+        spot4.style.background = 'red';
+        MygamePad.pickSpot(currentPlayer, 4);
+        console.log(MygamePad.gamePad[4]);
+    })
+}
+
+play.addEventListener('click', game);
 
