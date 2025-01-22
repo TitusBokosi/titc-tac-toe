@@ -55,6 +55,8 @@ function CreatePlayer(name){
 }
 
 let counter = 0;
+
+
 function setCurrentPlayer(){
     let currentPlayer;
 
@@ -66,4 +68,21 @@ function setCurrentPlayer(){
     }
     counter++;
 }
+
+
+const  spot1 = document.getElementById('spot-1');
+
+const  spot2 = document.getElementById('spot-2');
+
+const  spot3 = document.getElementById('spot-3');
+
+const  spot4 = document.getElementById('spot-4');
+
+const  spot5 = document.getElementById('spot-5');
+
+const  spot6 = document.getElementById('spot-6');
+
+const  spot7 = document.getElementById('spot-7');
+const  spot8 = document.getElementById('spot-8');
+const  spot9 = document.getElementById('spot-9');
 
