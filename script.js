@@ -1,40 +1,40 @@
 const MygamePad = ( function() {
-    const gamePad = new Array(9)
+    const gamePad = ['', '', '', '', '' ,'' ,'', '', ''];
     
     function pickSpot(currentPlayer, index){
       gamePad[index] = currentPlayer.name;
     }
 
     function selectWinner(){
-      if(gamePad[0] === gamePad[1] && gamePad[1] === gamePad[2] && gamePad[2] !== undefined){
+      if(gamePad[0] === gamePad[1] && gamePad[1] === gamePad[2] && gamePad[2] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
 
-      else if(gamePad[0] === gamePad[3] && gamePad[3] === gamePad[6] && gamePad[6] !== undefined){
+      else if(gamePad[0] === gamePad[3] && gamePad[3] === gamePad[6] && gamePad[6] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
       
-      else if(gamePad[0] === gamePad[4] && gamePad[4] === gamePad[8] && gamePad[8] !== undefined){
+      else if(gamePad[0] === gamePad[4] && gamePad[4] === gamePad[8] && gamePad[8] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
 
-      else if(gamePad[3] === gamePad[4] && gamePad[4] === gamePad[5] && gamePad[5] !== undefined){
+      else if(gamePad[3] === gamePad[4] && gamePad[4] === gamePad[5] && gamePad[5] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
 
-      else if(gamePad[6] === gamePad[7] && gamePad[7] === gamePad[8] && gamePad[8] !== undefined){
+      else if(gamePad[6] === gamePad[7] && gamePad[7] === gamePad[8] && gamePad[8] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
 
-      else if(gamePad[1] === gamePad[4] && gamePad[4] === gamePad[7] && gamePad[7] !== undefined){
+      else if(gamePad[1] === gamePad[4] && gamePad[4] === gamePad[7] && gamePad[7] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
 
-      else if(gamePad[2] === gamePad[4] && gamePad[4] === gamePad[6] && gamePad[6] !== undefined){
+      else if(gamePad[2] === gamePad[4] && gamePad[4] === gamePad[6] && gamePad[6] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
 
-      else if(gamePad[2] === gamePad[5] && gamePad[5] === gamePad[8] && gamePad[8] !== undefined){
+      else if(gamePad[2] === gamePad[5] && gamePad[5] === gamePad[8] && gamePad[8] !== ''){
         scoreDisplay.textContent = `${currentPlayer.name} has won`;
       }
       else{
@@ -44,7 +44,7 @@ const MygamePad = ( function() {
 
     function reset(){
       gamePad.forEach( function(element){
-        gamePad[gamePad.indexOf(element)] = undefined;
+        gamePad[gamePad.indexOf(element)] = '';
       })
     }
           
@@ -112,7 +112,7 @@ function loopThroughSpots(){
   display();
   spotArray.forEach(function(element, index){
   element.addEventListener('click', () => {
-    if(MygamePad.gamePad[index] === undefined){
+    if(MygamePad.gamePad[index] === ''){
       MygamePad.gamePad[index] = currentPlayer.name;
       if(currentPlayer === playerOne){
         element.style.backgroundColor = 'red';
@@ -127,12 +127,15 @@ function loopThroughSpots(){
       }
       else{
         MygamePad.reset();
+        const span = document.createElement('span');
+        span.textContent = `Another Round started.  ${currentPlayer.name} you can pick a spot!!`;
+        scoreDisplay.appendChild(span);
+    
         spotArray.forEach((element) => {
-          element.addEventListener('click', () =>{
+          
             element.style.background = 'white';
-          })
+        
         })
-        return;
       }
     }
     else{
