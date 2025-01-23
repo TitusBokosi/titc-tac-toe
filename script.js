@@ -41,8 +41,14 @@ const MygamePad = ( function() {
         return false;
       }
     }
+
+    function reset(){
+      gamePad.forEach( function(element){
+        gamePad[gamePad.indexOf(element)] = undefined;
+      })
+    }
           
-    return {pickSpot, selectWinner, gamePad};
+    return {pickSpot, reset, selectWinner, gamePad};
 })();
 
 
@@ -114,8 +120,20 @@ function loopThroughSpots(){
       else{
         element.style.background = 'blue';
       }
-      setCurrentPlayer();
-      display();
+      MygamePad.selectWinner();
+      if (MygamePad.selectWinner() === false){
+        setCurrentPlayer();
+        display();
+      }
+      else{
+        MygamePad.reset();
+        spotArray.forEach((element) => {
+          element.addEventListener('click', () =>{
+            element.style.background = 'white';
+          })
+        })
+        return;
+      }
     }
     else{
       scoreDisplay.textContent = 'spot already taken please select another spot ';
