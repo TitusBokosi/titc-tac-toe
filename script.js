@@ -9,37 +9,6 @@ const MygamePad = ( function() {
 })();
 
 
-function selectWinner(){
-  if(MygamePad.gamePad[0] === MygamePad.gamePad[1] && MygamePad.gamePad[1] === MygamePad.gamePad[2] && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[0] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[3] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[5]&& MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[5] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[6] === MygamePad.gamePad[7] && MygamePad.gamePad[7] === MygamePad.gamePad[8] && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[7] !== undefined && MygamePad.gamePad[8] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[0] === MygamePad.gamePad[3] && MygamePad.gamePad[3] === MygamePad.gamePad[6] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[6] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[0] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[8] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[8] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[2] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[6] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[2] !== undefined){
-    return true;
-  }
-  else if(MygamePad.gamePad[2] === MygamePad.gamePad[5] && MygamePad.gamePad[5] === MygamePad.gamePad[8] && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[5] !== undefined && MygamePad.gamePad[8] !== undefined){
-    return true;
-  }
-  else if (MygamePad.gamePad[1] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[7] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[7] !== undefined){
-    return true;
-  }
-  else{
-    return false;
-  }
-}
-
-
 
 function CreatePlayer(name){
 
@@ -93,12 +62,31 @@ const  spot9 = document.getElementById('spot-9');
 
 const play = document.getElementById('play');
 
+const spotArray = [spot1, spot2, spot3, spot4, spot5, spot6, spot7, spot8, spot9];
+setCurrentPlayer();
 
+spotArray.forEach(function(element, index){
+  element.addEventListener('click', () => {
+    if(MygamePad.gamePad[index] === ''){
+      MygamePad.gamePad[index] = currentPlayer.name;
+      if(currentPlayer === playerOne){
+        element.style.backgroundColor = 'red';
+      }
+      else{
+        element.style.background = 'blue';
+      }
+    }
+    else{
+      scoreDisplay.textContent = 'spot already taken';
+    }
+  })
+})
 
 function game(){
     setCurrentPlayer();
     display();
     spotEventListeners();
+    
 }
 
 
@@ -112,32 +100,6 @@ function assignColor(target){
   }
 
 }
-
-function spotEventListeners(){
-  spot1.addEventListener('click', ()=> {
-    if(MygamePad.gamePad[0] === ''){
-      MygamePad.pickSpot(currentPlayer, 0);
-      assignColor(spot1);
-    }
-
-    else{
-      alert('spot already t');
-    }
-  })
-
-  spot2.addEventListener('click', ()=> {
-    if(MygamePad.gamePad[1] === ''){
-      MygamePad.pickSpot(currentPlayer, 1);
-      assignColor(spot2);
-    }
-
-    else{
-      alert('spot already zee');
-    }
-  })
-
-}
-
 
 function display(){
   if(MygamePad.selectWinner === true){
