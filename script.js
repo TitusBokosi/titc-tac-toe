@@ -4,8 +4,45 @@ const MygamePad = ( function() {
     function pickSpot(currentPlayer, index){
       gamePad[index] = currentPlayer.name;
     }
+
+    function selectWinner(){
+      if(gamePad[0] === gamePad[1] && gamePad[1] === gamePad[2] && gamePad[2] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+
+      else if(gamePad[0] === gamePad[3] && gamePad[3] === gamePad[6] && gamePad[6] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+      
+      else if(gamePad[0] === gamePad[4] && gamePad[4] === gamePad[8] && gamePad[8] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+
+      else if(gamePad[3] === gamePad[4] && gamePad[4] === gamePad[5] && gamePad[5] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+
+      else if(gamePad[6] === gamePad[7] && gamePad[7] === gamePad[8] && gamePad[8] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+
+      else if(gamePad[1] === gamePad[4] && gamePad[4] === gamePad[7] && gamePad[7] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+
+      else if(gamePad[2] === gamePad[4] && gamePad[4] === gamePad[6] && gamePad[6] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+
+      else if(gamePad[2] === gamePad[5] && gamePad[5] === gamePad[8] && gamePad[8] !== undefined){
+        scoreDisplay.textContent = `${currentPlayer.name} has won`;
+      }
+      else{
+        return false;
+      }
+    }
           
-    return {pickSpot, gamePad};
+    return {pickSpot, selectWinner, gamePad};
 })();
 
 
@@ -81,7 +118,7 @@ function loopThroughSpots(){
       display();
     }
     else{
-      scoreDisplay.textContent = 'spot already taken';
+      scoreDisplay.textContent = 'spot already taken please select another spot ';
     }
     
   })
