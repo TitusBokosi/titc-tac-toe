@@ -47,8 +47,25 @@ const MygamePad = ( function() {
         gamePad[gamePad.indexOf(element)] = '';
       })
     }
+
+    function tie(){
+     if (gamePad.includes('') === false){
+      reset();
+      scoreDisplay.textContent = 'Tie';
+      const span = document.createElement('span');
+        span.textContent = `Another Round started.  ${currentPlayer.name} you can pick a spot!!`;
+        scoreDisplay.appendChild(span);
+        spotArray.forEach((element) => {
           
-    return {pickSpot, reset, selectWinner, gamePad};
+          element.style.background = 'white';
+      
+      })
+    
+     }
+   
+    }
+          
+    return {pickSpot, reset, tie, selectWinner, gamePad};
 })();
 
 
@@ -78,9 +95,9 @@ function setCurrentPlayer(){
 
 
 
-const playerOne = new CreatePlayer('josh');
+const playerOne = new CreatePlayer('Player one');
 
-const playerTwo = new CreatePlayer('tee');
+const playerTwo = new CreatePlayer('Player two');
 
 const scoreDisplay = document.querySelector('.score-display');
 
@@ -137,6 +154,7 @@ function loopThroughSpots(){
         
         })
       }
+      MygamePad.tie();
     }
     else{
       scoreDisplay.textContent = 'spot already taken please select another spot ';
