@@ -74,6 +74,11 @@ function setCurrentPlayer(){
 
 const playerOne = new CreatePlayer('josh');
 
+const playerTwo = new CreatePlayer('tee');
+
+const scoreDisplay = document.querySelector('.score-display');
+
+
 const  spot1 = document.getElementById('spot-1');
 
 const  spot2 = document.getElementById('spot-2');
@@ -94,12 +99,25 @@ const  spot9 = document.getElementById('spot-9');
 
 const play = document.getElementById('play');
 
+
+
 function game(){
+    setCurrentPlayer();
     spot4.addEventListener('click', () =>{
         spot4.style.background = 'red';
         MygamePad.pickSpot(currentPlayer, 4);
         console.log(MygamePad.gamePad[4]);
     })
+}
+
+
+function display(){
+  if(MygamePad.selectWinner === true){
+    scoreDisplay.textContent = `${currentPlayer.name} has won`;
+  }
+  else{
+    scoreDisplay.textContent = `${currentPlayer.name} your turn`;
+  }
 }
 
 play.addEventListener('click', game);
