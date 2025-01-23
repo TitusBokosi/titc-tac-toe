@@ -1,49 +1,43 @@
 const MygamePad = ( function() {
-    const gamePad = new Array(9);
+    const gamePad = ['', '', '', '', '', '', '', '','']
     
-    function pickSpot(yoh, index){
-
-        if(gamePad[index] === undefined){
-             gamePad[index] = yoh.name;
-        }
-        else{
-            return alert('spot already taken');
-        }
+    function pickSpot(currentPlayer, index){
+      gamePad[index] = currentPlayer.name;
     }
-
-    function selectWinner(){
-        if(MygamePad.gamePad[0] === MygamePad.gamePad[1] && MygamePad.gamePad[1] === MygamePad.gamePad[2] && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[0] !== undefined){
-          return true;
-        }
-        else if (MygamePad.gamePad[3] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[5]&& MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[5] !== undefined){
-          return true;
-        }
-        else if (MygamePad.gamePad[6] === MygamePad.gamePad[7] && MygamePad.gamePad[7] === MygamePad.gamePad[8] && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[7] !== undefined && MygamePad.gamePad[8] !== undefined){
-          return true;
-        }
-        else if (MygamePad.gamePad[0] === MygamePad.gamePad[3] && MygamePad.gamePad[3] === MygamePad.gamePad[6] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[6] !== undefined){
-          return true;
-        }
-        else if (MygamePad.gamePad[0] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[8] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[8] !== undefined){
-          return true;
-        }
-        else if (MygamePad.gamePad[2] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[6] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[2] !== undefined){
-          return true;
-        }
-        else if(MygamePad.gamePad[2] === MygamePad.gamePad[5] && MygamePad.gamePad[5] === MygamePad.gamePad[8] && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[5] !== undefined && MygamePad.gamePad[8] !== undefined){
-          return true;
-        }
-        else if (MygamePad.gamePad[1] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[7] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[7] !== undefined){
-          return true;
-        }
-        else{
-          return false;
-        }
-      }
-
           
-    return {pickSpot, selectWinner, gamePad};
+    return {pickSpot, gamePad};
 })();
+
+
+function selectWinner(){
+  if(MygamePad.gamePad[0] === MygamePad.gamePad[1] && MygamePad.gamePad[1] === MygamePad.gamePad[2] && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[0] !== undefined){
+    return true;
+  }
+  else if (MygamePad.gamePad[3] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[5]&& MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[5] !== undefined){
+    return true;
+  }
+  else if (MygamePad.gamePad[6] === MygamePad.gamePad[7] && MygamePad.gamePad[7] === MygamePad.gamePad[8] && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[7] !== undefined && MygamePad.gamePad[8] !== undefined){
+    return true;
+  }
+  else if (MygamePad.gamePad[0] === MygamePad.gamePad[3] && MygamePad.gamePad[3] === MygamePad.gamePad[6] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[3] !== undefined && MygamePad.gamePad[6] !== undefined){
+    return true;
+  }
+  else if (MygamePad.gamePad[0] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[8] && MygamePad.gamePad[0] !== undefined && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[8] !== undefined){
+    return true;
+  }
+  else if (MygamePad.gamePad[2] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[6] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[6] !== undefined && MygamePad.gamePad[2] !== undefined){
+    return true;
+  }
+  else if(MygamePad.gamePad[2] === MygamePad.gamePad[5] && MygamePad.gamePad[5] === MygamePad.gamePad[8] && MygamePad.gamePad[2] !== undefined && MygamePad.gamePad[5] !== undefined && MygamePad.gamePad[8] !== undefined){
+    return true;
+  }
+  else if (MygamePad.gamePad[1] === MygamePad.gamePad[4] && MygamePad.gamePad[4] === MygamePad.gamePad[7] && MygamePad.gamePad[4] !== undefined && MygamePad.gamePad[1] !== undefined && MygamePad.gamePad[7] !== undefined){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 
 
@@ -103,11 +97,45 @@ const play = document.getElementById('play');
 
 function game(){
     setCurrentPlayer();
-    spot4.addEventListener('click', () =>{
-        spot4.style.background = 'red';
-        MygamePad.pickSpot(currentPlayer, 4);
-        console.log(MygamePad.gamePad[4]);
-    })
+    display();
+    spotEventListeners();
+}
+
+
+function assignColor(target){
+
+  if(currentPlayer === playerOne){
+    target.style.backgroundColor = 'red';
+  }
+  else{
+    target.style.background = 'blue';
+  }
+
+}
+
+function spotEventListeners(){
+  spot1.addEventListener('click', ()=> {
+    if(MygamePad.gamePad[0] === ''){
+      MygamePad.pickSpot(currentPlayer, 0);
+      assignColor(spot1);
+    }
+
+    else{
+      alert('spot already t');
+    }
+  })
+
+  spot2.addEventListener('click', ()=> {
+    if(MygamePad.gamePad[1] === ''){
+      MygamePad.pickSpot(currentPlayer, 1);
+      assignColor(spot2);
+    }
+
+    else{
+      alert('spot already zee');
+    }
+  })
+
 }
 
 
