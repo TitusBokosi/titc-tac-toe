@@ -79,4 +79,22 @@ h1{
     color: white;
 }
 
+input{
+    height: 1.5rem;
+    font-size: 1.2rem;
+    width: 300px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding-inline: 10px;
+    text-align: center;
+    color: rgb(5, 87, 87);
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
