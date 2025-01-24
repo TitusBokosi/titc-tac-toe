@@ -178,6 +178,7 @@ form.addEventListener('submit', event => {
   const first = document.querySelector('#first');
   playerTwo.name = document.querySelector('#second-player').value;
   playerOne.name = first.value;
+  form.remove();
   loopThroughSpots();
 });
 
