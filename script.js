@@ -171,13 +171,16 @@ function display(){
   
 }
 
-const form = document.querySelector('form');
+const form = document.querySelector('.form');
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  const playerOneName = document.querySelector('#first-player');
-  playerOneName.textContent = 'hi';
+  const first = document.querySelector('#first');
+  playerTwo.name = document.querySelector('#second-player').value;
+  playerOne.name = first.value;
   loopThroughSpots();
 });
+
+
 
 
