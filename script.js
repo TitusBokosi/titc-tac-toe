@@ -171,5 +171,13 @@ function display(){
   
 }
 
-play.addEventListener('click', loopThroughSpots);
+const form = document.querySelector('form');
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const playerOneName = document.querySelector('#first-player');
+  playerOneName.textContent = 'hi';
+  loopThroughSpots();
+});
+
 
